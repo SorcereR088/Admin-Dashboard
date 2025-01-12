@@ -1,11 +1,10 @@
 import React from 'react';
 import { useGetPropertiesQuery } from '../state/api';
-import image1 from '../assets/Properties/image1.jpg'; // Assuming you will dynamically load different images as well
+import image1 from '../assets/Properties/image1.jpg'; 
 
 const Properties = () => {
   const { data, isLoading } = useGetPropertiesQuery();
 
-  // Show a loading message or spinner if the data is still being fetched
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -13,9 +12,12 @@ const Properties = () => {
   return (
     <div className="px-4 py-10">
       <h2 className="text-[30px] font-bold mb-4">Properties</h2>
+      <div className='flex gap-4 mb-4'>
+        <button className='bg-orange-400 px-4 py-2 rounded-xl text-sm'>Pending Properties</button>
+        <button className='bg-green-400 px-4 py-2 rounded-xl text-sm'>All Properties</button>
+      </div>
 
       <div className="grid grid-cols-2 gap-6">
-        {/* Map over each property and display dynamically */}
         {data.map((property, index) => (
           <div key={index} className="card flex items-start bg-white rounded-lg p-4 space-x-4 max-w-lg">
             <div className="w-[200px] h-[200px]">

@@ -7,10 +7,13 @@ import Pages from './pages/Pages'
 function App() {
   return (
     <>
-    <div className='grid gap-4 grid-cols-[350px,_1fr]'>
-      <Sidebar />
-      <Pages/>
-    </div>
+ <div className="grid gap-4 grid-cols-[350px,_1fr]">
+  <div className="sticky top-0 h-screen">
+    <Sidebar />
+  </div>
+  <Pages />
+</div>
+
 
     </>
 
