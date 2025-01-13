@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }), 
   reducerPath: 'adminApi',
-  tagTypes: ['Properties', 'Clients'],
+  tagTypes: ['Properties', 'Clients', 'Transactions'],
 
   endpoints: (build) => ({
     // Property endpoints
@@ -54,6 +54,12 @@ export const api = createApi({
         }),
         invalidatesTags: ['Clients'],
       }),
+      
+      //Transactions / Bookings
+      getTransactions: build.query({
+        query: (id) => '/transactions',
+        providesTags: ["Transactions"]
+      })
   }),
 });
 
@@ -65,5 +71,6 @@ export const {
   useGetClientsQuery, 
   useCreateClientMutation,
   useUpdateClientMutation, 
-  useDeleteClientMutation 
+  useDeleteClientMutation,
+  useGetTransactionsQuery
 } = api;

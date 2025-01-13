@@ -7,6 +7,7 @@ import morgan from 'morgan';
 
 import propertiesRoute from './routes/properties.js';
 import clientsRoute from './routes/clients.js'
+import transactionsRoute from './routes/transactions.js'
 
 
 // Configurations
@@ -24,6 +25,7 @@ app.use(cors());
 
 app.use("/properties", propertiesRoute);
 app.use("/clients", clientsRoute)
+app.use("/transactions", transactionsRoute)
 
 
 

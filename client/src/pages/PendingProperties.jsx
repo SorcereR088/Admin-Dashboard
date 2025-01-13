@@ -7,6 +7,7 @@ import image3 from '../assets/Properties/image3.jpg';
 import image4 from '../assets/Properties/image4.jpg';
 import image5 from '../assets/Properties/image5.jpg';
 import image6 from '../assets/Properties/image6.jpg';
+import { useEffect, useState } from 'react';
 
 // Create an image map
 const imageMap = {
@@ -57,13 +58,14 @@ const PendingProperties = () => {
                 <button className="bg-green-500 text-white py-1 px-4 rounded-lg hover:bg-green-600">
                   Accept
                 </button>
-                <button className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600">
+                <button className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600" onClick={handleMessageModal}>
                   Decline
                 </button>
               </div>
             </div>
           </div>
         ))}
+        
       </div>
     </div>
   );

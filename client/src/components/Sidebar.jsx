@@ -9,7 +9,7 @@ import { GrTransaction } from "react-icons/gr";
 const Sidebar = () => {
   return (
     <>
-      <div className='h-screen bg-white w-[350px] px-8 py-8'>
+      <div className='h-screen bg-white w-[320px] px-8 py-8'>
         <div className='Logo w-[140px] bg-white'>
           <img className= "bg-transparent" src={StayNestLogo} alt="" />
         </div>
