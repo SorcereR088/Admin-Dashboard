@@ -58,7 +58,7 @@ const PendingProperties = () => {
                 <button className="bg-green-500 text-white py-1 px-4 rounded-lg hover:bg-green-600">
                   Accept
                 </button>
-                <button className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600" onClick={handleMessageModal}>
+                <button className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600">
                   Decline
                 </button>
               </div>
