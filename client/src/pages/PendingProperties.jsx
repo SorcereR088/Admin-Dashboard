@@ -1,15 +1,12 @@
 import { useGetPropertiesQuery } from '../state/api';
-
-// Import all images
 import image1 from '../assets/Properties/image1.jpg';
 import image2 from '../assets/Properties/image2.jpg';
 import image3 from '../assets/Properties/image3.jpg';
 import image4 from '../assets/Properties/image4.jpg';
 import image5 from '../assets/Properties/image5.jpg';
 import image6 from '../assets/Properties/image6.jpg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-// Create an image map
 const imageMap = {
   'image1.jpg': image1,
   'image2.jpg': image2,
@@ -21,6 +18,27 @@ const imageMap = {
 
 const PendingProperties = () => {
   const { data, isLoading } = useGetPropertiesQuery();
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [declineReason, setDeclineReason] = useState('');
+
+  const handleOpenModal = (property) => {
+    setSelectedProperty(property);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProperty(null);
+    setDeclineReason('');
+  };
+
+  const handleDeclineSubmit = () => {
+    console.log('Declined property:', selectedProperty);
+    console.log('Reason:', declineReason);
+    handleCloseModal();
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -58,15 +76,47 @@ const PendingProperties = () => {
                 <button className="bg-green-500 text-white py-1 px-4 rounded-lg hover:bg-green-600">
                   Accept
                 </button>
-                <button className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600">
+                <button
+                  className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600"
+                  onClick={() => handleOpenModal(property)}
+                >
                   Decline
                 </button>
               </div>
             </div>
           </div>
         ))}
-        
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-sm w-full">
+            <h2 className="text-lg font-semibold bg-white">Decline Property</h2>
+            <p className="text-sm text-gray-600 mt-2 bg-white">Why are you declining this property?</p>
+            <textarea
+              className="w-full mt-3 border border-gray-300 rounded-lg p-2"
+              rows="4"
+              placeholder="Enter your reason..."
+              value={declineReason}
+              onChange={(e) => setDeclineReason(e.target.value)}
+            />
+            <div className="mt-4 flex justify-end gap-2 bg-white">
+              <button
+                className="bg-gray-300 text-gray-800 py-1 px-4 rounded-lg hover:bg-gray-400"
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600"
+                onClick={handleDeclineSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
